@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue v-bind style</title>
+</head>
+<body>
+    <div id="app">
+        <h3>对象语法</h3>
+        <div :style="{'color': color, 'fontSize': fontSize + 'px'}"></div>
+        <h3>data语法</h3>
+        <div :style="computer"></div>
+        <h3>computed语法</h3>
+        <div :style="computedStyle"></div>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            color: 'red',
+            fontSize: 14,
+            computer: {
+                color: 'red',
+                fontSize: 14 + 'px'
+            }
+        },
+        computed: {
+            computedStyle: function() {
+                return {
+                    'color': 'red',
+                    'fontSize': 14 + 'px'
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
