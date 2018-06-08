@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue computed</title>
+</head>
+<body>
+    <div id="app">
+        Total Price: {{ totalPrice }}
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            package1: [
+                {
+                    name: 'iPhone X',
+                    price: 7399,
+                    count: 2
+                },
+                {
+                    name: 'Mac Pro',
+                    price: 13999,
+                    count: 1
+                }
+            ],
+            package2: [
+                {
+                    name: 'iPad',
+                    price: 3599,
+                    count: 2
+                },
+                {
+                    name: 'iWatch',
+                    price: 2899,
+                    count: 2
+                }
+            ]
+        },
+        computed: {
+            totalPrice: function() {
+                var total = 0;
+                for (var i = 0; i < this.package1.length; i++) {
+                    total += this.package1[i].price * this.package1[i].count;
+                }
+                for (var j = 0; j < this.package2.length; j++) {
+                    total += this.package2[j].price * this.package2[j].count;
+                }
+                return total;
+            }
+        }
+    })
+</script>
+</body>
+</html>

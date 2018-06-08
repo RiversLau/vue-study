@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 实例对象</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+
+    var myData = {
+        name : "Your Name"
+    }
+
+    var app = new Vue({
+        el : document.getElementById("app"), // 等同于 '#app'
+        data : myData
+    });
+
+    console.log(app.name);
+
+    app.name = 'Rivers';
+    console.log(myData.name);
+
+    myData.name = "Hello";
+    console.log(app.name);
+</script>
+</body>
+</html>
