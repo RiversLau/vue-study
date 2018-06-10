@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Directives event</title>
+</head>
+<body>
+    <div id="app">
+        <a href="http://www.apple.com" @click="handleClick('禁止打开', $event)">打开苹果</a>
+        <a href="http://www.baidu.com" @click.stop.prevent="handle('禁止打开')">打开百度</a>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            counter: 0
+        },
+        methods: {
+            handleClick: function(message, event) {
+                event.preventDefault();
+                window.alert(message);
+            },
+            handle: function(message) {
+                window.alert(message);
+            }
+        }
+    })
+</script>
+</body>
+</html>
