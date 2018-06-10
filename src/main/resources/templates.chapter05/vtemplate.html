@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue template</title>
+</head>
+<body>
+    <!-- 注意input框去掉key后，点击button的不同 -->
+    <div id="app">
+        <template v-if="type === 'name'">
+            <label>用户名：</label>
+            <input placeholder="请输入用户名" key="name_input"/>
+        </template>
+        <template v-else>
+            <label>邮箱：</label>
+            <input placeholder="请输入邮箱" key="mail_input"/>
+        </template>
+        <button @click="handleToggleClick">切换输入类型</button>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            type: 'name'
+        },
+        methods: {
+            handleToggleClick: function() {
+                this.type = this.type === 'name' ? 'main' : 'name';
+            }
+        }
+    })
+</script>
+</body>
+</html>

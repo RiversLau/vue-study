@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Directives vif_elseif_else</title>
+</head>
+<body>
+    <div id="app">
+        <p v-if="status === 1">status为1时显示</p>
+        <p v-else-if="status === 2">status为2时显示</p>
+        <p v-else>既不是1也不是2时显示</p>
+        <br/>
+        <template v-if="status === 1">
+            <p>当显示多个元素时，可以通过template来实现</p>
+            <input type="text" placeholder="姓名"/>
+        </template>
+    </div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            status: 1
+        }
+    })
+</script>
+</html>

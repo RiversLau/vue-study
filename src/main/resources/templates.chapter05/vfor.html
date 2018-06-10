@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Directives v-for</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="pushBook">添加书籍</button>
+        <ul>
+            <h3>通过in来迭代</h3>
+            <li v-for="book in books">{{book.name}}</li>
+
+            <h3>通过of来迭代</h3>
+            <li v-for="book of books">{{book.name}}</li>
+
+            <h3>显示索引</h3>
+            <li v-for="(book, index) in books">{{index}}-{{book.name}}</li>
+
+            <h3>通过template来显示</h3>
+            <template v-for="book in books">
+                <li>书名：{{book.name}}</li>
+                <li>作者：{{book.author}}</li>
+            </template>
+
+            <h3>遍历对象属性</h3>
+            <span v-for="value in user">{{value}}</span>
+
+            <h3>通过键跟索引遍历对象属性</h3>
+            <ul>
+                <li v-for="(value, key, index) in user">
+                    {{index}} -- {{key}}:{{value}}
+                </li>
+            </ul>
+
+            <h3>遍历整数</h3>
+            <span v-for="n in 10">{{n}} </span>
+        </ul>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            books: [
+                {name: '《Vue.js实战》', author: '梁浩'},
+                {name: '《JavaScript语言精粹》', author: 'Douglas Crockford'},
+                {name: '《JavaScript高级程序设计》', author: 'Nicholas C.Zakas'}
+            ],
+            user: {
+                name: 'Rivers',
+                gender: '男',
+                age: 29
+            }
+        },
+        methods: {
+            pushBook: function() {
+                this.books.push({
+                    name: '《CSS揭秘》',
+                    author: '[希] Lea Verou'
+                })
+            }
+        }
+    });
+</script>
+</body>
+</html>
