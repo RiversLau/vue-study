@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue form value bind</title>
+</head>
+<body>
+    <div id="app">
+        <input type="radio" v-model="radioCheck" :value="value">
+        <label>单选</label>
+        <p>{{radioCheck}}-{{value}}</p>
+        <br/>
+
+        <input type="checkbox" v-model="checkboxCheck" :true-value="value1" :false-value="value2">
+        <label>复选框</label>
+        <p>{{checkboxCheck}}-{{value1}}</p>
+        <br/>
+
+        <select v-modle="selected">
+            <option :value="{number:123}">123</option>
+            <option :value="{number:456}">456</option>
+        </select>
+        <p>{{selected.number}}</p>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            radioCheck: false,
+            value: 'hello',
+
+            checkboxCheck: false,
+            value1: 'world',
+            value2: 'fuck',
+
+            selected: {
+                number: 456
+            }
+        }
+    })
+</script>
+</body>
+</html>

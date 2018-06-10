@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue radio</title>
+</head>
+<body>
+    <div id="app">
+        <input type="radio" :checked="picked">
+        <label>单选按钮</label>
+        <h3>多个互斥</h3>
+        <input type="radio" v-model="multiPick" value="html" id="html">
+        <label for="html">HTML</label>
+        <input type="radio" v-model="multiPick" value="js" id="js">
+        <label for="js" value="javaScript">JavaScript</label>
+        <input type="radio" v-model="multiPick" value="css" id="css">
+        <label for="css">CSS</label>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            picked: false,
+            multiPick: 'js'
+        }
+    })
+</script>
+</body>
+</html>
