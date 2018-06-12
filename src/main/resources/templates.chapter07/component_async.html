@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue component</title>
+</head>
+<body>
+    <div id="app">
+        <child-component></child-component>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    Vue.component('child-component', function(resolve, reject) {
+        window.setTimeout(function() {
+            resolve({
+                template: '<div>异步渲染</div>'
+            })
+        }, 3000);
+    });
+    var app = new Vue({
+        el: '#app'
+    })
+</script>
+</body>
+</html>

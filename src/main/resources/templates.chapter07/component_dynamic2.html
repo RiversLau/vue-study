@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue component</title>
+</head>
+<body>
+    <div id="app">
+        <component :is="currentView"></component>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    var Home = {
+        template: '<p>Welcome Home!</p>'
+    };
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            currentView: Home
+        }
+    })
+</script>
+</body>
+</html>
