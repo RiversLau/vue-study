@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue slot</title>
+</head>
+<body>
+    <div id="app">
+        <h3>父组件模板的内容是在父组件作用域内编译的</h3>
+        <child-component v-show="showChild"></child-component>
+        <h3>子组件模板的内容是在子组件作用域内编译的</h3>
+        <child-component2></child-component2>
+        <br/>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    Vue.component('child-component', {
+        template: '<div>子组件</div>'
+    });
+    Vue.component('child-component2', {
+        template: '<div v-show="showChild2">子组件</div>',
+        data: function() {
+            return {
+                showChild2: false
+            }
+        }
+    });
+    var app = new Vue({
+        el: '#app',
+        data: {
+            showChild: true
+        }
+    })
+</script>
+</body>
+</html>
