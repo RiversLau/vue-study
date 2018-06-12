@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue component</title>
+</head>
+<body>
+    <div id="app">
+        <h3>引用同一个对象，导致数据级联更新</h3>
+        <my-component></my-component>
+        <my-component></my-component>
+        <my-component></my-component>
+        <h3>非同一个对象</h3>
+        <my-component2></my-component2>
+        <my-component2></my-component2>
+        <my-component2></my-component2>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+
+    var data = {
+        counter: 0
+    };
+
+    Vue.component('my-component', {
+        template: '<button @click="counter++">{{counter}}</button>',
+        data: function() {
+            return data;
+        }
+    });
+
+    Vue.component('my-component2', {
+        template: '<button @click="counter++">{{counter}}</button>',
+        data: function() {
+            return {
+                counter: 0
+            };
+        }
+    });
+
+    var app = new Vue({
+        el: '#app'
+    })
+</script>
+</body>
+</html>
