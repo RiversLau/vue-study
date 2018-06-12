@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue component</title>
+</head>
+<body>
+    <div id="app">
+        <my-component message="Hello, component props" warning-text="(camelCase-kebabCase)"></my-component>
+        <h3>动态数据</h3>
+        <input type="text" v-model="dynamicMsg">
+        <my-component2 :message2="dynamicMsg"></my-component2>
+        <h3>如果直接传递数字、布尔值、数组、对象，而且不使用v-bind，传递的仅仅是字符串</h3>
+        <my-component3 message3="[1,2,3]"></my-component3>
+        <my-component3 :message3="[1,2,3]"></my-component3>
+        <h2>业务中改变props的情况</h2>
+        <h3>第一种，父组件传递初始值，子组件保存初始值，在自己的作用域下随意修改</h3>
+        <my-component4 :init-count="1"></my-component4>
+        <h3>第二种，作为需要被转变的原始值传入</h3>
+        <my-component5 :width="100"></my-component5>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+
+    Vue.component('my-component', {
+        props: ['message', 'warningText'],
+        template: '<div>{{message}}-{{warningText}}</div>'
+    });
+
+    Vue.component('my-component2', {
+        props: ['message2'],
+        template: '<div>{{message2}}</div>'
+    });
+
+    Vue.component('my-component3', {
+        props: ['message3'],
+        template: '<div>{{message3.length}}</div>'
+    });
+
+    Vue.component('my-component4', {
+        props: ['initCount'],
+        template: '<div>{{count}}',
+        data: function() {
+            return {
+                count: this.initCount
+            }
+        }
+    });
+
+    Vue.component('my-component5', {
+        props: ['width'],
+        template: '<div :style="style">组件内容</div>',
+        computed: {
+            style: function() {
+                return {
+                    width: this.width + 'px'
+                }
+            }
+        }
+    });
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            dynamicMsg: ''
+        }
+    })
+</script>
+</body>
+</html>

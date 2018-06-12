@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue component</title>
+</head>
+<body>
+    <div id="app">
+        <p>总数：{{total}}</p>
+        <!-- v-model等同于@input -->
+        <my-component v-model="total"></my-component>
+        <h3>v-model创建自定义表单组件</h3>
+        <p>总数：{{total2}}</p>
+        <my-component2 v-model="total2"></my-component2>
+        <button @click="handleReduce">-1</button>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    Vue.component('my-component', {
+        template: '<button @click="handleClick">+1</button>',
+        data: function() {
+            return {counter: 0}
+        },
+        methods: {
+            handleClick: function() {
+                this.counter++;
+                this.$emit('input', this.counter);
+            }
+        }
+    });
+
+    Vue.component('my-component2', {
+        props: ['value'],
+        template: '<input :value="value" @input="updateValue">',
+        methods: {
+            updateValue: function(event) {
+                this.$emit('input', event.target.value);
+            }
+        }
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            total: 0,
+            total2: 0
+        },
+        methods: {
+            handleReduce: function() {
+                this.total2--;
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue component</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <component-a></component-a>
+        <br/>
+        <button @click="handleRef">通过Ref获取子组件实例</button>
+        <component-b ref="comb"></component-b>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    Vue.component('component-a', {
+        template: '<button @click="handleEvent">通过父链直接修改数据</button>',
+        methods: {
+            handleEvent: function() {
+                this.$parent.message = '来自组件component-a的事件';
+            }
+        }
+    });
+    Vue.component('component-b', {
+        template: '<div>子组件</div>',
+        data: function() {
+            return {
+                messageRef: '子组件内容'
+            }
+        }
+    });
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        },
+        methods: {
+            handleRef: function() {
+                var msg = this.$refs.comb.messageRef;
+                console.log(msg);
+            }
+        }
+    })
+</script>
+</body>
+</html>

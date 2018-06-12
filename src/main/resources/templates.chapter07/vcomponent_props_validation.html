@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue component</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    Vue.component('my-component', {
+        props: {
+            propA: Number,
+            propB: [String, Number],
+            propC: {
+                type: Boolean,
+                default: true
+            },
+            propD: {
+                type: Number,
+                required: true
+            },
+            propE: {
+                type: Array,
+                default: function() {
+                    return [];
+                }
+            },
+            propF: {
+                validator: function(value) {
+                    return value > 10;
+                }
+            }
+        }
+    })
+    var app = new Vue({
+        el: '#app'
+    })
+</script>
+</body>
+</html>
