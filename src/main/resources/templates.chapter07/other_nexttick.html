@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue $nextTick</title>
+</head>
+<body>
+    <div id="app">
+        <div id="div" v-if="showDiv">这是一段文本</div>
+        <button @click="getText">获取Div内容</button>
+    </div>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            showDiv: false
+        },
+        methods: {
+            getText: function() {
+                this.showDiv = true;
+
+                <!-- 下面注释的方式，第一次会报错，提示无法读取innerHTML属性，这是因为Vue存在异步更新队列，对
+                     数据的修改并不会立即更新到DOM，而是放入队列中-->
+//                var text = document.getElementById("div").innerHTML;
+//                console.log(text);
+                this.$nextTick(function() {
+                    var text = document.getElementById("div").innerHTML;
+                    console.log(text);
+                });
+            }
+        }
+    })
+</script>
+</body>
+</html>
